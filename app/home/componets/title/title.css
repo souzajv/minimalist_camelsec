@@ -1,0 +1,24 @@
+h1 {
+    font-size: 4vw;
+}
+
+h1 span:first-child {
+    font-size: 8vw;
+}
+
+h1 span:first-child,
+#span-final {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    filter: var(--filter-neon);
+}
+
+#span-penultimo {
+    color: var(--color-primary);
+    filter: var(--filter-neon);
+}
+
+.blinking-cursor {
+    opacity: 1;
+    transition: opacity 0.4s;
+}
