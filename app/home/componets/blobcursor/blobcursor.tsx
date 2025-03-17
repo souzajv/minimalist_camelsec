@@ -40,7 +40,7 @@ export default function BlobCursor({
         const element = document.elementFromPoint(x, y);
         if (
             element &&
-            ["A", "BUTTON", "INPUT", "TEXTAREA", "SELECT", "H1", "H2", "H3", "H4", "H5", "H6", "P", "SPAN", "IMAGE", "IMG"].includes(
+            ["A", "BUTTON", "INPUT", "TEXTAREA", "SELECT", "H1", "H2", "H3", "H4", "H5", "H6", "P", "SPAN", "IMAGE", "IMG", "HEADER"].includes(
                 element.tagName
             )
         ) {

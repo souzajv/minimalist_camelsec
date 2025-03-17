@@ -4,14 +4,14 @@
 }
 
 :root {
-  --color-primary: #00ffa1;
-  --color-secondary: #000000;
-  --color-tertiary: #ffffff;
+  --color-green: #00ffa1;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-gray: #2a322f;
   --primary-font: "Major Mono Display", monospace;
-  --secondary-font: "DopeDisplay";
-  --neon: 0 0 4px #00ffa1, 0 0 6px var(--color-primary);
-  --strong-neon: 0 0 14px var(--color-primary), 0 0 16px var(--color-primary);
-  --filter-neon: drop-shadow(0px 0px 8px var(--color-primary));
+  --neon: 0 0 4px #00ffa1, 0 0 6px var(--color-green);
+  --strong-neon: 0 0 14px var(--color-green), 0 0 16px var(--color-green);
+  --filter-neon: drop-shadow(0px 0px 8px var(--color-green));
 }
 
 ::-webkit-scrollbar {
@@ -19,21 +19,118 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-secondary);
+  background: var(--color-black);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-primary);
+  background: var(--color-green);
   border-radius: 10px;
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--color-primary) transparent;
+  scrollbar-color: var(--color-green) transparent;
+  padding: 0;
+  margin: 0;
 }
 
 body {
-  background-color: var(--color-secondary);
-  color: var(--color-tertiary);
+  background-color: var(--color-black);
+  color: var(--color-white);
   overflow: hidden;
+}
+
+@keyframes chitchat {
+  0% {
+    content: "#";
+  }
+
+  5% {
+    content: ".";
+  }
+
+  10% {
+    content: "^{";
+  }
+
+  15% {
+    content: "-!";
+  }
+
+  20% {
+    content: "#$_";
+  }
+
+  25% {
+    content: "№:0";
+  }
+
+  30% {
+    content: "#{+.";
+  }
+
+  35% {
+    content: "@}-?";
+  }
+
+  40% {
+    content: "?{4@%";
+  }
+
+  45% {
+    content: "=.,^!";
+  }
+
+  50% {
+    content: "?2@%";
+  }
+
+  55% {
+    content: "\;1}]";
+  }
+
+  60% {
+    content: "?{%:%";
+    right: 0;
+  }
+
+  65% {
+    content: "|{f[4";
+    right: 0;
+  }
+
+  70% {
+    content: "{4%0%";
+    right: 0;
+  }
+
+  75% {
+    content: "'1_0<";
+    right: 0;
+  }
+
+  80% {
+    content: "{0%";
+    right: 0;
+  }
+
+  85% {
+    content: "]>'";
+    right: 0;
+  }
+
+  90% {
+    content: "4";
+    right: 0;
+  }
+
+  95% {
+    content: "2";
+    right: 0;
+  }
+
+  100% {
+    content: "";
+    right: 0;
+  }
 }

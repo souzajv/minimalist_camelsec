@@ -1,24 +1,23 @@
 h1 {
-    font-size: 4vw;
+    width: auto;
+    font-size: 4.5vw;
+    font-weight: 100;
 }
 
-h1 span:first-child {
-    font-size: 8vw;
-}
-
-h1 span:first-child,
-#span-final {
-    background-color: var(--color-primary);
-    color: var(--color-secondary);
+.span-box {
+    background-color: var(--color-green);
+    color: var(--color-black);
     filter: var(--filter-neon);
+    font-weight: 100;
+    color: var(--color-black);
 }
 
-#span-penultimo {
-    color: var(--color-primary);
-    filter: var(--filter-neon);
+#span-margin {
+    padding-left: 10vw;
 }
 
 .blinking-cursor {
     opacity: 1;
     transition: opacity 0.4s;
+    font-weight: 900;
 }

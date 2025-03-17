@@ -10,18 +10,25 @@ interface TitleProps {
 export default function Title({ setTriggerStart }: TitleProps) {
     const segments = [
         "s",
-        "egurança não traz estresse",
-        ",",
+        "egurança",
+        " não traz",
+        "estresse,",
         "traz ",
-        "resultado",
     ];
+
+    const words = ["resultado", "excelencia", "autoridade", "prestígio"];
+
     const charset = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%&*";
 
     const [displayedSegments, setDisplayedSegments] = useState<string[]>(
         Array(segments.length).fill("")
     );
+
+    const [currentWord, setCurrentWord] = useState("");
+
     const [animationFinished, setAnimationFinished] = useState(false);
     const [showCursor, setShowCursor] = useState(true);
+    const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
     useEffect(() => {
         const getRandomStrings = () =>
@@ -39,6 +46,7 @@ export default function Title({ setTriggerStart }: TitleProps) {
         let currentCharIndex = 0;
 
         const animateSegment = () => {
+
             if (currentSegmentIndex >= segments.length) {
                 setAnimationFinished(true);
                 if (setTriggerStart) {
@@ -46,6 +54,7 @@ export default function Title({ setTriggerStart }: TitleProps) {
                 }
                 return;
             }
+
             const segmentReal = segments[currentSegmentIndex];
             const revealed = segmentReal
                 .split("")
@@ -73,6 +82,52 @@ export default function Title({ setTriggerStart }: TitleProps) {
     }, []);
 
     useEffect(() => {
+        if (!animationFinished) return;
+
+        let currentCharIndex = 0;
+
+        let randomWord = words[currentWordIndex]
+            .split("")
+            .map(() => charset[Math.floor(Math.random() * charset.length)])
+            .join("");
+
+        setCurrentWord(randomWord);
+
+        const animateWord = () => {
+            const realWord = words[currentWordIndex];
+            if (currentCharIndex > realWord.length) {
+                return;
+            }
+
+            const revealed = realWord
+                .split("")
+                .map((char, idx) =>
+                    idx < currentCharIndex
+                        ? char
+                        : charset[Math.floor(Math.random() * charset.length)]
+                )
+                .join("");
+
+            setCurrentWord(revealed);
+
+            currentCharIndex++;
+            setTimeout(animateWord, 30);
+        };
+
+        animateWord();
+    }, [animationFinished, currentWordIndex]);
+
+    useEffect(() => {
+        if (!animationFinished) return;
+
+        const interval = setInterval(() => {
+            setCurrentWordIndex((prev) => (prev + 1) % words.length);
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, [animationFinished]);
+
+    useEffect(() => {
         const cursorInterval = setInterval(() => {
             setShowCursor((prev) => !prev);
         }, 500);
@@ -81,13 +136,26 @@ export default function Title({ setTriggerStart }: TitleProps) {
 
     return (
         <h1 id="title">
-            <span>{displayedSegments[0]}</span>
-            {displayedSegments[1]}
-            <span id="span-penultimo">{displayedSegments[2]}</span>
+            <span className="span-box">
+                <span id="first-letter">
+                    {displayedSegments[0]}
+                </span>
+                {displayedSegments[1]}
+            </span>
+            <span>
+                {displayedSegments[2]}
+            </span>
             <br />
-            {displayedSegments[3]}
-            <span id="span-final">{displayedSegments[4]}</span>
-            {showCursor && <span className="blinking-cursor">|</span>}
+            <span>
+                {displayedSegments[3]}
+            </span>
+            <br />
+            <span id="span-margin">
+                <span>{displayedSegments[4]}</span>
+                <span className="span-box">{currentWord}</span>
+                {showCursor && <span className="blinking-cursor">|</span>}
+            </span>
+            
         </h1>
     );
 }

@@ -1,0 +1,23 @@
+/* Container principal do componente */
+.subtitle-container {
+    display: block;
+    width: 100%;
+    background-color: #2a322f88;
+    padding: 10vh 24px;
+    position: absolute;
+    bottom: 0;
+}
+
+.subtitle-text {
+    color: var(--color-secundary);
+    font-weight: 200;
+    font-size: 1.1vw;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+
+.subtitle-word {
+    display: inline-block;
+    margin: 0 0.25rem;
+}
