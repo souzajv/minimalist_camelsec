@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-//import Button from "../button/button";
-import "./header.css"; // Importa nosso arquivo de estilos
+import { InteractiveHoverButton } from "../button/InteractiveHoverButton";
+import "./header.css"; 
 
 interface HeaderProps {
     className?: string;
@@ -52,8 +52,10 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
                 </Link>
             </nav>
 
-            <Link href="/login">
-                
+            <Link id="button" href="/login">
+                <InteractiveHoverButton>
+                    login camel<span id="team">team</span>
+                </InteractiveHoverButton>
             </Link>
         </motion.header>
     );

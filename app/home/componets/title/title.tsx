@@ -7,28 +7,35 @@ interface TitleProps {
     setTriggerStart?: (value: boolean) => void;
 }
 
+const GlitchText = ({ text, isGlitching }: { text: string; isGlitching: boolean }) => {
+    return (
+        <span className={`glitch ${isGlitching ? "glitch-active" : ""}`} data-text={text}>
+            {text}
+        </span>
+    );
+};
+
 export default function Title({ setTriggerStart }: TitleProps) {
     const segments = [
         "s",
         "egurança",
-        " não traz",
-        "estresse,",
-        "traz ",
+        " não",
+        " traz",
+        " estresse,",
+        " traz "
     ];
 
-    const words = ["resultado", "excelencia", "autoridade", "prestígio"];
-
+    const words = ["resultado", "excelência", "autoridade", "prestígio"];
     const charset = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%&*";
 
-    const [displayedSegments, setDisplayedSegments] = useState<string[]>(
-        Array(segments.length).fill("")
-    );
-
+    const [displayedSegments, setDisplayedSegments] = useState<string[]>(Array(segments.length).fill(""));
+    const [glitchIndex, setGlitchIndex] = useState<number | null>(null);
     const [currentWord, setCurrentWord] = useState("");
-
     const [animationFinished, setAnimationFinished] = useState(false);
     const [showCursor, setShowCursor] = useState(true);
     const [currentWordIndex, setCurrentWordIndex] = useState(0);
+
+    const glitchTargets = [2, 3, 4, 5]; 
 
     useEffect(() => {
         const getRandomStrings = () =>
@@ -46,7 +53,6 @@ export default function Title({ setTriggerStart }: TitleProps) {
         let currentCharIndex = 0;
 
         const animateSegment = () => {
-
             if (currentSegmentIndex >= segments.length) {
                 setAnimationFinished(true);
                 if (setTriggerStart) {
@@ -134,28 +140,39 @@ export default function Title({ setTriggerStart }: TitleProps) {
         return () => clearInterval(cursorInterval);
     }, []);
 
+    useEffect(() => {
+        if (!animationFinished) return;
+
+        const glitchEffect = () => {
+            const randomIndex = glitchTargets[Math.floor(Math.random() * glitchTargets.length)];
+            setGlitchIndex(randomIndex);
+
+            setTimeout(() => {
+                setGlitchIndex(null);
+            }, Math.random() * 400 + 200);
+        };
+
+        const glitchInterval = setInterval(glitchEffect, Math.random() * 2000 + 1000);
+
+        return () => clearInterval(glitchInterval);
+    }, [animationFinished]);
+
     return (
         <h1 id="title">
             <span className="span-box">
-                <span id="first-letter">
-                    {displayedSegments[0]}
-                </span>
+                <span id="first-letter">{displayedSegments[0]}</span>
                 {displayedSegments[1]}
-            </span>
-            <span>
-                {displayedSegments[2]}
-            </span>
+            </span>{" "}
+            <GlitchText text={displayedSegments[2]} isGlitching={glitchIndex === 2} />{" "}
+            <GlitchText text={displayedSegments[3]} isGlitching={glitchIndex === 3} />
             <br />
-            <span>
-                {displayedSegments[3]}
-            </span>
+            <GlitchText text={displayedSegments[4]} isGlitching={glitchIndex === 4} />
             <br />
             <span id="span-margin">
-                <span>{displayedSegments[4]}</span>
+                <GlitchText text={displayedSegments[5]} isGlitching={glitchIndex === 5} />{" "}
                 <span className="span-box">{currentWord}</span>
                 {showCursor && <span className="blinking-cursor">|</span>}
             </span>
-            
         </h1>
     );
 }

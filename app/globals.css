@@ -10,8 +10,8 @@
   --color-gray: #2a322f;
   --primary-font: "Major Mono Display", monospace;
   --neon: 0 0 4px #00ffa1, 0 0 6px var(--color-green);
-  --strong-neon: 0 0 14px var(--color-green), 0 0 16px var(--color-green);
-  --filter-neon: drop-shadow(0px 0px 8px var(--color-green));
+  --strong-neon: 0 0 14px var(--color-green), 0 0 12px var(--color-green);
+  --filter-neon: drop-shadow(0px 0px 18px var(--color-green));
 }
 
 ::-webkit-scrollbar {
